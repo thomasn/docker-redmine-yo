@@ -1,6 +1,9 @@
 FROM ubuntu
+# Update the APT cache
+RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install -y postgresql-9.1 sudo emacs23 supervisor openssh-server
+RUN apt-get upgrade -y
+RUN apt-get install -y postgresql-9.1 sudo emacs23-nox supervisor openssh-server
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
 RUN locale-gen en_US en_US.UTF-8
